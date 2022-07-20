@@ -1,0 +1,105 @@
+<section id="employeeList">
+  <div class="container p-2">
+    <div class="row">
+      <div class="col-12 offset-1" style="margin-top: 95px;">
+        <!-- <app-message></app-message>
+        <hr> -->
+        <!-- Đang nạp lên server , đang tải dữ liệu về -->
+        <div *ngIf="!employees" class="m-auto">
+          <!-- <h1 class="text-center display-3 mt-5" >
+            <i class="fas fa-spinner fa-spin"></i>
+          </h1> -->
+          <div class="custom-skeleton p-4">
+            <div class="flex mb-3">
+                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                <div>
+                    <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton height=".5rem"></p-skeleton>
+                </div>
+            </div>
+            <p-skeleton width="100%" height="150px"></p-skeleton>
+            <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+            </div>
+        </div>
+        </div>
+
+        <!-- khi có thông đầy, Đã tải về dữ liệu thành công -->
+        <div *ngIf="employees">
+          <div class="card">
+            <p-toolbar styleClass="mb-4">
+              <ng-template pTemplate="left">
+                  <button [routerLink]="['/employee-add']" [style]="{ 'height': '40px' }"  pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                  <button pButton pRipple  icon="pi pi-trash" [style]="{'height': '40px' }" class="p-button-danger" [disabled]="!employees || employees.length"></button>
+              </ng-template>
+
+              <ng-template pTemplate="right">
+                  <p-fileUpload mode="basic" accept="image/*" [style]="{'height': '40px' }" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                  <button pButton pRipple label="Export" [style]="{'height': '40px' }" icon="pi pi-upload" class="p-button-help"></button>
+              </ng-template>
+            </p-toolbar>
+            <p-table [value]="employees">
+
+              <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between" >
+                    <h5 class="m-0">Manage Products</h5>
+                </div>
+              </ng-template>
+
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                  </th>
+                  <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                  <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                  <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                  <th pSortableColumn="work">Work <p-sortIcon field="work"></p-sortIcon></th>
+                  <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product >
+                <tr>
+                  <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                  </td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.email}}</td>
+                  <td>{{product.status}}</td>
+                  <td>{{product.work}}</td>
+                  <td>{{product.phone}}</td>
+                  <td>
+                    <button [routerLink]="['/employee-detail/' + product._id]" routerLinkActive="router-link-active"  pButton pRipple icon="pi pi-th-large" class="p-button-rounded p-button-success mr-2"  [style]="{'height': '40px', 'width': '40px'}"></button>
+                    <button [routerLink]="['/employee-edit/' + product._id]" pButton pRipple  icon="pi pi-pencil" [style]="{'height': '40px', 'width': '40px'}" class="p-button-rounded p-button-warning mr-2" ></button>
+                    <div class="btn-group">
+                      <button pButton pRipple icon="pi pi-trash" [style]="{'height': '40px', 'width': '40px'}" class="p-button-rounded p-button-danger"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item">Are you sure delete ??</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="downmenu">
+                          <button type="button" class="btn btn-success">No</button>
+                          <button type="button" class="btn btn-danger" (click)="delete(product._id)" (click)="showError()">Yes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+

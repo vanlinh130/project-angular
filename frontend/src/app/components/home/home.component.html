@@ -1,0 +1,77 @@
+<!-- <section id="employeeAdd">
+  <div class="container">
+    <div class="row">
+      <div class="col offset-2">
+        <div class="row" *ngIf="employees">
+          <div class="col" *ngFor="let item of employees" style="margin-top: 10px;" routerLinkActive="router-link-active" >
+            <p-card header="{{item.name}}" subheader="{{item.work}}" [style]="{width: '320px'}" styleClass="p-card-shadow">
+              <ng-template pTemplate="header">
+                <img alt="Card" src="../../../assets/images/user.jpg" [routerLink]="['/employee-detail']">
+              </ng-template>
+              <p>Chức vụ : {{item.role}}</p>
+              <p>Trạng thái công việc: {{item.status}}</p>
+              <p>Email: {{item.email}}</p>
+              <p>Phone: {{item.phone}}</p>
+              <ng-template pTemplate="footer" >
+                <p-button label="Save" icon="pi pi-check" [style]="{'height': '40px'}" [routerLink]="['/employee-list']"
+                routerLinkActive="router-link-active"></p-button>
+                <div class="btn-group">
+                  <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary "
+                    [style]="{'margin-left': '.5em', 'height': '40px'}" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"></p-button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item">Are you sure delete ??</a>
+                    <div class="dropdown-divider"></div>
+                    <div class="downmenu">
+                      <button type="button" class="btn btn-success">No</button>
+                      <button type="button" class="btn btn-danger" (click)="delete(item._id)" (click)="showError()" >Yes</button>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </p-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ -->
+
+<section id="employeeAdd" >
+  <div class="container">
+    <div class="row" >
+      <div class="col offset-1" style="margin-top: 60px;" >
+        <p-carousel [value]="employees" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+            <ng-template pTemplate="header">
+                <h5></h5>
+            </ng-template>
+          <ng-template let-product pTemplate="item">
+              <div class="product-item">
+                  <div class="product-item-content">
+                      <div class="mb-3">
+                          <img src="../../../assets/images/user.jpg" [alt]="product.name" class="product-image" />
+                      </div>
+                      <div>
+                          <h4 class="mb-1">{{product.name}}</h4>
+                          <h6 class="mt-0 mb-3">{{product.role}}</h6>
+                          <div class="product-detail">
+                            <span>{{product.phone}}</span>
+                            <p>{{product.email}}</p>
+                          </div>
+                          <div class="car-buttons mt-5">
+                              <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>
+                              <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>
+                              <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </ng-template>
+      </p-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+
